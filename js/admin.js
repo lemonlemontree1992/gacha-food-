@@ -55,7 +55,7 @@ async function loadAllData() {
 
 // 加载概览数据
 async function loadOverview() {
-    const data = await apiRequest(`stats/overview?range=${currentRange}`);
+    const data = await apiRequest(`stats?type=overview&range=${currentRange}`);
 
     if (data) {
         document.getElementById('totalVisitors').textContent = formatNumber(data.visitors || 0);
@@ -73,7 +73,7 @@ async function loadOverview() {
 
 // 加载趋势图
 async function loadTrendChart() {
-    const data = await apiRequest(`stats/trend?range=${currentRange}`);
+    const data = await apiRequest(`stats?type=trend&range=${currentRange}`);
 
     let labels, values;
 
@@ -119,7 +119,7 @@ async function loadTrendChart() {
 
 // 加载时段分布图
 async function loadHourlyChart() {
-    const data = await apiRequest(`stats/hourly?range=${currentRange}`);
+    const data = await apiRequest(`stats?type=hourly&range=${currentRange}`);
 
     let labels, values;
 
@@ -163,7 +163,7 @@ async function loadHourlyChart() {
 
 // 加载排行榜
 async function loadRanking() {
-    const data = await apiRequest(`stats/ranking?range=${currentRange}`);
+    const data = await apiRequest(`stats?type=ranking&range=${currentRange}`);
     const tbody = document.getElementById('rankingBody');
 
     if (data && data.length > 0) {
@@ -217,7 +217,7 @@ async function loadRanking() {
 
 // 加载最近记录
 async function loadRecent() {
-    const data = await apiRequest(`stats/recent?range=${currentRange}`);
+    const data = await apiRequest(`stats?type=recent&range=${currentRange}`);
     const container = document.getElementById('recentList');
 
     if (data && data.length > 0) {
@@ -256,7 +256,7 @@ async function loadRecent() {
 
 // 导出CSV
 async function exportCSV() {
-    const data = await apiRequest(`stats/ranking?range=${currentRange}&export=true`);
+    const data = await apiRequest(`stats?type=ranking&range=${currentRange}&export=true`);
 
     let csvContent = 'data:text/csv;charset=utf-8,';
     csvContent += '排名,档口,抽中次数,点赞,踩,好评率\n';
