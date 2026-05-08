@@ -46,21 +46,34 @@ export default async function handler(req, res) {
 
 function getDateRange(range) {
     const now = new Date();
-    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+
+    // 获取北京时间 (UTC+8)
+    const beijingOffset = 8 * 60 * 60 * 1000; // 8小时的毫秒数
+    const beijingNow = new Date(now.getTime() + beijingOffset);
+
+    // 北京时间今日 0:00 (转换回 UTC)
+    const beijingTodayStart = new Date(
+        Date.UTC(
+            beijingNow.getUTCFullYear(),
+            beijingNow.getUTCMonth(),
+            beijingNow.getUTCDate(),
+            0, 0, 0, 0
+        ) - beijingOffset
+    );
 
     switch (range) {
         case 'today':
-            return { startDate: today, endDate: now };
+            return { startDate: beijingTodayStart, endDate: now };
         case 'week':
-            const weekAgo = new Date(today - 7 * 86400000);
+            const weekAgo = new Date(beijingTodayStart.getTime() - 7 * 86400000);
             return { startDate: weekAgo, endDate: now };
         case 'month':
-            const monthAgo = new Date(today - 30 * 86400000);
+            const monthAgo = new Date(beijingTodayStart.getTime() - 30 * 86400000);
             return { startDate: monthAgo, endDate: now };
         case 'all':
             return { startDate: new Date(2020, 0, 1), endDate: now };
         default:
-            return { startDate: today, endDate: now };
+            return { startDate: beijingTodayStart, endDate: now };
     }
 }
 
@@ -145,8 +158,10 @@ async function getHourly(res, startDate, endDate) {
 
     if (data) {
         data.forEach(item => {
-            const hour = new Date(item.created_at).getHours();
-            values[hour]++;
+            // 将 UTC 时间转换为北京时间 (UTC+8)
+            const date = new Date(item.created_at);
+            const beijingHour = (date.getUTCHours() + 8) % 24;
+            values[beijingHour]++;
         });
     }
 

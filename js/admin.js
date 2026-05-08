@@ -294,14 +294,23 @@ function formatNumber(num) {
 }
 
 function formatTime(isoString) {
+    // 将 UTC 时间转换为北京时间 (UTC+8)
     const date = new Date(isoString);
+    // 获取北京时间
+    const beijingOffset = 8 * 60; // 北京时间偏移（分钟）
+    const localOffset = date.getTimezoneOffset(); // 本地时区偏移（分钟，东半球为负）
+    // 计算北京时间戳
+    const beijingTime = new Date(date.getTime() + (beijingOffset + localOffset) * 60000);
+
     const now = new Date();
+    const nowBeijing = new Date(now.getTime() + (beijingOffset + now.getTimezoneOffset()) * 60000);
     const diff = now - date;
 
     if (diff < 60000) return '刚刚';
     if (diff < 3600000) return `${Math.floor(diff / 60000)}分钟前`;
     if (diff < 86400000) return `${Math.floor(diff / 3600000)}小时前`;
-    return date.toLocaleDateString();
+    // 使用北京时间格式化日期
+    return `${beijingTime.getMonth() + 1}/${beijingTime.getDate()} ${beijingTime.getHours()}:${String(beijingTime.getMinutes()).padStart(2, '0')}`;
 }
 
 function getRankClass(rank) {
