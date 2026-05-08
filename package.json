@@ -1,0 +1,16 @@
+{
+  "name": "gacha-food",
+  "version": "1.0.0",
+  "description": "美食扭蛋机 - 帮你决定今天吃什么",
+  "type": "module",
+  "scripts": {
+    "dev": "vercel dev",
+    "deploy": "vercel --prod"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.38.0"
+  },
+  "devDependencies": {
+    "vercel": "^32.0.0"
+  }
+}

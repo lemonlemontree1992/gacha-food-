@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>美食扭蛋机 - 管理后台</title>
+    <link rel="stylesheet" href="css/admin.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="admin-container">
+        <header class="admin-header">
+            <h1>📊 管理后台</h1>
+            <a href="/" class="back-link">返回首页</a>
+        </header>
+
+        <!-- 时间筛选 -->
+        <div class="filter-section">
+            <button class="filter-btn active" data-range="today">今日</button>
+            <button class="filter-btn" data-range="week">近7天</button>
+            <button class="filter-btn" data-range="month">近30天</button>
+            <button class="filter-btn" data-range="all">全部</button>
+        </div>
+
+        <!-- 数据概览 -->
+        <section class="stats-overview">
+            <div class="stat-card">
+                <div class="stat-icon">👀</div>
+                <div class="stat-content">
+                    <div class="stat-value" id="totalVisitors">-</div>
+                    <div class="stat-label">独立访客</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">🎰</div>
+                <div class="stat-content">
+                    <div class="stat-value" id="totalSpins">-</div>
+                    <div class="stat-label">抽奖次数</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">👍</div>
+                <div class="stat-content">
+                    <div class="stat-value" id="totalLikes">-</div>
+                    <div class="stat-label">点赞数</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">📈</div>
+                <div class="stat-content">
+                    <div class="stat-value" id="likeRate">-</div>
+                    <div class="stat-label">好评率</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 趋势图 -->
+        <section class="chart-section">
+            <h2>📈 访问趋势</h2>
+            <div class="chart-container">
+                <canvas id="trendChart"></canvas>
+            </div>
+        </section>
+
+        <!-- 时段分布 -->
+        <section class="chart-section">
+            <h2>⏰ 时段分布</h2>
+            <div class="chart-container">
+                <canvas id="hourlyChart"></canvas>
+            </div>
+        </section>
+
+        <!-- 档口排行 -->
+        <section class="ranking-section">
+            <div class="section-header">
+                <h2>🏆 档口排行榜</h2>
+                <button class="export-btn" id="exportBtn">导出CSV</button>
+            </div>
+            <div class="ranking-table-container">
+                <table class="ranking-table">
+                    <thead>
+                        <tr>
+                            <th>排名</th>
+                            <th>档口</th>
+                            <th>抽中次数</th>
+                            <th>点赞</th>
+                            <th>踩</th>
+                            <th>好评率</th>
+                        </tr>
+                    </thead>
+                    <tbody id="rankingBody">
+                        <tr>
+                            <td colspan="6" class="loading">加载中...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- 最近记录 -->
+        <section class="recent-section">
+            <h2>📝 最近抽奖记录</h2>
+            <div class="recent-list" id="recentList">
+                <div class="loading">加载中...</div>
+            </div>
+        </section>
+    </div>
+
+    <script src="js/utils.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>

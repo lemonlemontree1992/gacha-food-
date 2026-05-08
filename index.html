@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <title>美食扭蛋机</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="title">美食扭蛋机</h1>
+            <p class="subtitle">转一转，遇见今日美味</p>
+        </div>
+
+        <div class="gacha-machine">
+            <div class="top-ball">✨</div>
+            <div class="machine-body">
+                <div class="machine-label"><span>FOOD GACHA</span></div>
+                <div class="globe-container">
+                    <div class="globe">
+                        <div class="balls-container">
+                            <div class="mini-ball"></div>
+                            <div class="mini-ball"></div>
+                            <div class="mini-ball"></div>
+                            <div class="mini-ball"></div>
+                            <div class="mini-ball"></div>
+                            <div class="mini-ball"></div>
+                            <div class="mini-ball"></div>
+                        </div>
+                        <div class="main-capsule">
+                            <div class="capsule-ball" id="capsuleBall">
+                                <span class="capsule-emoji" id="capsuleEmoji">🍽️</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="machine-base">
+                    <div class="stripe-decoration"></div>
+                    <div class="controls">
+                        <div class="output-hole"></div>
+                        <div class="handle-area">
+                            <div class="handle-btn" id="handle">
+                                <span class="handle-icon">🎯</span>
+                            </div>
+                            <div class="handle-hint">扭出今日美食</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="machine-footer"></div>
+
+            <!-- 飞行扭蛋 -->
+            <div class="flying-capsule" id="flyingCapsule">
+                <span id="flyingEmoji">🍜</span>
+            </div>
+
+            <!-- 结果区：美食卡片 -> 闪购入口 -> 吉祥语 -->
+            <div class="result-section" id="resultSection">
+                <div class="food-card" id="foodCard">
+                    <span class="food-emoji" id="foodEmoji">🍽️</span>
+                    <div class="food-label">今日推荐</div>
+                    <div class="food-name" id="foodName"></div>
+                    <!-- 用户反馈按钮 -->
+                    <div class="feedback-section" id="feedbackSection">
+                        <span class="feedback-hint">你去了吗？</span>
+                        <div class="feedback-buttons">
+                            <button class="feedback-btn like-btn" id="likeBtn" data-action="like">
+                                <span>👍</span> 去了，很赞！
+                            </button>
+                            <button class="feedback-btn dislike-btn" id="dislikeBtn" data-action="dislike">
+                                <span>👎</span> 没去
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- 闪购外卖入口 -->
+                <div class="flash-buy-right" id="flashBuyRight">
+                    <button class="flash-buy-btn" id="flashBuyBtn">
+                        <span class="flash-icon">⚡</span>
+                        <span class="flash-text">淘宝闪购外卖</span>
+                    </button>
+                </div>
+                <div class="blessing-card" id="blessingCard">
+                    <div class="blessing-text" id="blessingText">祝你好运连连，福气满满！</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 二维码区域 -->
+        <div class="qrcode-section" id="qrcodeSection">
+            <div class="qrcode-title">扫码分享给同事</div>
+            <div id="qrcode"></div>
+            <button class="share-btn" id="shareBtn">复制链接分享</button>
+        </div>
+    </div>
+
+    <!-- Toast 提示 -->
+    <div class="toast" id="toast"></div>
+
+    <!-- 管理入口 -->
+    <div class="admin-link" id="adminLink">管理入口</div>
+
+    <!-- 管理密码弹窗 -->
+    <div class="modal-overlay" id="adminModal">
+        <div class="modal">
+            <div class="modal-title">管理后台</div>
+            <input type="password" class="modal-input" id="adminPassword" placeholder="请输入管理密码">
+            <div class="modal-buttons">
+                <button class="modal-btn cancel" id="adminCancel">取消</button>
+                <button class="modal-btn confirm" id="adminConfirm">确认</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 环境提示弹窗 -->
+    <div class="modal-overlay" id="toastModal">
+        <div class="modal toast-modal">
+            <div class="toast-icon">📱</div>
+            <div class="toast-message" id="toastMessage">请打开淘宝闪购选购</div>
+            <button class="modal-btn confirm" id="toastConfirm">知道了</button>
+        </div>
+    </div>
+
+    <!-- 引入依赖 -->
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/data/foods.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
