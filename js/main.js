@@ -245,7 +245,7 @@ function generateQRCode() {
 async function copyShareLink() {
     const success = await copyToClipboard(window.location.href);
     if (success) {
-        showToast('链接已复制，快去分享给同事吧！");
+        showToast('链接已复制，快去分享给同事吧！');
     } else {
         showToast('复制失败，请手动复制');
     }
