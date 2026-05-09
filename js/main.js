@@ -155,6 +155,10 @@ async function submitFeedback(action) {
         return;
     }
 
+    // 立即隐藏反馈按钮
+    const feedbackSection = document.getElementById('feedbackSection');
+    feedbackSection.style.display = 'none';
+
     // 保存本地记录
     saveTodayFeedback(currentFood.name, action);
 
@@ -165,10 +169,6 @@ async function submitFeedback(action) {
         action: action,
         device_id: deviceId
     });
-
-    // 隐藏反馈按钮
-    const feedbackSection = document.getElementById('feedbackSection');
-    feedbackSection.style.display = 'none';
 
     if (result) {
         showToast(action === 'like' ? '感谢反馈！祝用餐愉快！' : '好的，换个口味再试试吧~');

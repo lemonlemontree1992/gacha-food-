@@ -439,7 +439,7 @@ body {
 }
 
 .blessing-card {
-    width: 90%; max-width: 560px;
+    width: 90%; max-width: 650px;
     min-width: 320px;
     background: linear-gradient(135deg, #ff7043, #ff5722);
     border-radius: 15px; padding: 12px 20px;
