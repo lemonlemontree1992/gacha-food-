@@ -70,6 +70,7 @@ async function spin() {
     handle.classList.add('disabled');
     foodCard.classList.remove('show');
     blessingCard.classList.remove('show');
+    feedbackSection.style.display = 'block';
     feedbackSection.style.opacity = '1';
     capsuleBall.classList.add('spinning');
 
@@ -117,9 +118,9 @@ async function spin() {
                     flashBuyRight.style.display = 'flex';
                 }
 
-                // 检查今日是否已反馈
+                // 检查今日是否已反馈，已反馈则隐藏按钮
                 if (hasFeedbackToday(finalFood.name)) {
-                    disableFeedbackButtons();
+                    feedbackSection.style.display = 'none';
                 }
 
                 // 记录抽奖
@@ -155,9 +156,6 @@ async function submitFeedback(action) {
         return;
     }
 
-    // 禁用按钮
-    disableFeedbackButtons();
-
     // 保存本地记录
     saveTodayFeedback(currentFood.name, action);
 
@@ -168,6 +166,10 @@ async function submitFeedback(action) {
         action: action,
         device_id: deviceId
     });
+
+    // 隐藏反馈按钮
+    const feedbackSection = document.getElementById('feedbackSection');
+    feedbackSection.style.display = 'none';
 
     if (result) {
         showToast(action === 'like' ? '感谢反馈！祝用餐愉快！' : '好的，换个口味再试试吧~');
