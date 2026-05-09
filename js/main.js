@@ -70,8 +70,7 @@ async function spin() {
     handle.classList.add('disabled');
     foodCard.classList.remove('show');
     blessingCard.classList.remove('show');
-    feedbackSection.style.display = 'block';
-    feedbackSection.style.opacity = '1';
+    feedbackSection.style.display = 'none';
     capsuleBall.classList.add('spinning');
 
     // 重置反馈按钮状态
@@ -118,9 +117,9 @@ async function spin() {
                     flashBuyRight.style.display = 'flex';
                 }
 
-                // 检查今日是否已反馈，已反馈则隐藏按钮
-                if (hasFeedbackToday(finalFood.name)) {
-                    feedbackSection.style.display = 'none';
+                // 显示反馈按钮（如果今日未反馈过该档口）
+                if (!hasFeedbackToday(finalFood.name)) {
+                    feedbackSection.style.display = 'block';
                 }
 
                 // 记录抽奖
