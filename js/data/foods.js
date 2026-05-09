@@ -1,6 +1,6 @@
 // 食堂数据配置
 const foods = [
-    // 4楼餐厅 (7个)
+    // 4楼餐厅 (8个)
     { emoji: "🥗", name: "4楼沙拉", floor: 4 },
     { emoji: "🥟", name: "4楼水饺", floor: 4 },
     { emoji: "🍚", name: "4楼自选称重档口菜", floor: 4 },
@@ -8,6 +8,7 @@ const foods = [
     { emoji: "🍛", name: "4楼自选档口", floor: 4 },
     { emoji: "🍜", name: "4楼面条", floor: 4 },
     { emoji: "🌶️", name: "4楼江西小炒", floor: 4 },
+    { emoji: "🔥", name: "4楼川菜档口", floor: 4 },
     // 3楼餐厅 (13个)
     { emoji: "🍜", name: "3楼山西面馆", floor: 3 },
     { emoji: "🍲", name: "3楼湖南米粉", floor: 3 },

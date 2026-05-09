@@ -3,7 +3,7 @@
 // 配置
 const CONFIG = {
     ALIPAY_URL: 'https://ur.alipay.com/_2m8rCylYokzSaPsBdYi9yv',
-    CANTEEN_PROBABILITY: 0.7  // 70%概率抽中食堂美食
+    CANTEEN_PROBABILITY: 0.8  // 80%概率抽中食堂美食
 };
 
 // 状态
