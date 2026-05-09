@@ -385,10 +385,10 @@ body {
 /* 用户反馈按钮 */
 .feedback-section {
     margin-top: 15px;
-    padding-top: 15px;
-    border-top: 1px dashed rgba(255,112,67,0.3);
-    position: relative;
-    z-index: 1;
+    padding: 15px 20px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
 }
 
 .feedback-hint {
@@ -400,20 +400,18 @@ body {
 
 .feedback-buttons {
     display: flex;
-    gap: 10px;
+    gap: 12px;
     justify-content: center;
 }
 
 .feedback-btn {
-    padding: 8px 16px;
+    padding: 10px 24px;
     border: none;
-    border-radius: 20px;
-    font-size: 0.85rem;
+    border-radius: 25px;
+    font-size: 1rem;
     cursor: pointer;
     transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    gap: 4px;
+    font-weight: 500;
 }
 
 .feedback-btn.like-btn {

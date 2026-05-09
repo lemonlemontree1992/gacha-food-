@@ -104,7 +104,7 @@ async function spin() {
                 flyingCapsule.classList.remove('animate');
                 foodEmoji.textContent = finalFood.emoji;
                 foodName.textContent = finalFood.name;
-                blessingText.textContent = finalBlessing;
+                blessingText.textContent = '扭出祝福：' + finalBlessing;
                 foodCard.classList.add('show');
                 blessingCard.classList.add('show');
                 createConfetti();
@@ -183,11 +183,11 @@ function resetFeedbackButtons() {
 
     likeBtn.disabled = false;
     likeBtn.classList.remove('submitted');
-    likeBtn.innerHTML = '<span>👍</span> 去了，很赞！';
+    likeBtn.innerHTML = '👍 赞';
 
     dislikeBtn.disabled = false;
     dislikeBtn.classList.remove('submitted');
-    dislikeBtn.innerHTML = '<span>👎</span> 没去';
+    dislikeBtn.innerHTML = '👎 不想吃';
 }
 
 // 禁用反馈按钮
