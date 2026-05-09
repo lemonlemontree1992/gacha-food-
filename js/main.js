@@ -160,7 +160,7 @@ async function submitFeedback(action) {
     feedbackSection.style.display = 'none';
 
     // 立即显示 toast
-    showToast('感谢反馈，再忙也要吃饭哦');
+    showToast('感谢反馈，再忙也要和美食碰个面');
 
     // 保存本地记录
     saveTodayFeedback(currentFood.name, action);
