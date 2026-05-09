@@ -159,22 +159,19 @@ async function submitFeedback(action) {
     const feedbackSection = document.getElementById('feedbackSection');
     feedbackSection.style.display = 'none';
 
+    // 立即显示 toast
+    showToast('感谢反馈，再忙也要吃饭哦');
+
     // 保存本地记录
     saveTodayFeedback(currentFood.name, action);
 
-    // 发送到服务器
-    const result = await apiRequest('feedback', 'POST', {
+    // 发送到服务器（异步，不阻塞）
+    apiRequest('feedback', 'POST', {
         food_name: currentFood.name,
         food_emoji: currentFood.emoji,
         action: action,
         device_id: deviceId
     });
-
-    if (result) {
-        showToast(action === 'like' ? '感谢反馈！祝用餐愉快！' : '好的，换个口味再试试吧~');
-    } else {
-        showToast('反馈已记录（离线模式）');
-    }
 }
 
 // 重置反馈按钮状态
