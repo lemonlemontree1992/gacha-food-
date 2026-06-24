@@ -56,8 +56,7 @@ async function spin() {
     isSpinning = true;
 
     const handle = document.getElementById('handle');
-    const capsuleBall = document.getElementById('capsuleBall');
-    const capsuleEmoji = document.getElementById('capsuleEmoji');
+    const gachaMachine = document.querySelector('.gacha-machine');
     const flyingCapsule = document.getElementById('flyingCapsule');
     const flyingEmoji = document.getElementById('flyingEmoji');
     const foodCard = document.getElementById('foodCard');
@@ -67,33 +66,38 @@ async function spin() {
     const blessingText = document.getElementById('blessingText');
     const feedbackSection = document.getElementById('feedbackSection');
 
+    const originalBtnText = handle.textContent;
     handle.classList.add('disabled');
+    handle.textContent = '正在启动...';
     foodCard.classList.remove('show');
     blessingCard.classList.remove('show');
     feedbackSection.style.display = 'none';
-    capsuleBall.classList.add('spinning');
+
+    // 机器晃动：对齐 muse (1) GachaponGame.tsx:67-71 的 1 秒摇晃（10 次 100ms）
+    gachaMachine.classList.add('shaking');
+    setTimeout(() => {
+        gachaMachine.classList.remove('shaking');
+    }, 1000);
 
     // 重置反馈按钮状态
     resetFeedbackButtons();
 
+    // 等待摇晃动画结束（22 * 80ms = 1760ms），与原版节奏一致
     let spinCount = 0;
     const spinInterval = setInterval(() => {
-        capsuleEmoji.textContent = getWeightedRandomFood().emoji;
         spinCount++;
 
         if (spinCount >= 22) {
             clearInterval(spinInterval);
-            capsuleBall.classList.remove('spinning');
 
             const finalFood = getWeightedRandomFood();
             currentFood = finalFood;
             const finalBlessing = blessings[Math.floor(Math.random() * blessings.length)];
-            capsuleEmoji.textContent = finalFood.emoji;
             flyingEmoji.textContent = finalFood.emoji;
 
-            // 重置飞行扭蛋动画
+            // 重置飞行扭蛋动画（相对 .machine-image-wrap 定位，从机器中部飞出）
             flyingCapsule.style.left = '50%';
-            flyingCapsule.style.top = '45%';
+            flyingCapsule.style.top = '55%';
             flyingCapsule.style.transform = 'translate(-50%, -50%)';
 
             flyingCapsule.classList.remove('animate');
@@ -125,6 +129,7 @@ async function spin() {
                 // 记录抽奖
                 recordSpin(finalFood);
 
+                handle.textContent = originalBtnText;
                 setTimeout(() => {
                     handle.classList.remove('disabled');
                     isSpinning = false;

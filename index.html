@@ -16,45 +16,22 @@
         </div>
 
         <div class="gacha-machine">
-            <div class="top-ball">✨</div>
-            <div class="machine-body">
-                <div class="machine-label"><span>FOOD GACHA</span></div>
-                <div class="globe-container">
-                    <div class="globe">
-                        <div class="balls-container">
-                            <div class="mini-ball"></div>
-                            <div class="mini-ball"></div>
-                            <div class="mini-ball"></div>
-                            <div class="mini-ball"></div>
-                            <div class="mini-ball"></div>
-                            <div class="mini-ball"></div>
-                            <div class="mini-ball"></div>
-                        </div>
-                        <div class="main-capsule">
-                            <div class="capsule-ball" id="capsuleBall">
-                                <span class="capsule-emoji" id="capsuleEmoji">🍽️</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="machine-base">
-                    <div class="stripe-decoration"></div>
-                    <div class="controls">
-                        <div class="output-hole"></div>
-                        <div class="handle-area">
-                            <div class="handle-btn" id="handle">
-                                <span class="handle-icon">🎯</span>
-                            </div>
-                            <div class="handle-hint">扭出今日美食</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="machine-footer"></div>
+            <!-- 扭蛋机一体化容器：图片机器 + 抽奖按钮底座 -->
+            <div class="gacha-unit">
+                <!-- 扭蛋机图片（对齐 muse (1) 的赛博朋克扭蛋机视觉） -->
+                <div class="machine-image-wrap" id="machineImage">
+                    <img src="assets/muse2-gachapon.webp" alt="美食扭蛋机" class="machine-image">
 
-            <!-- 飞行扭蛋 -->
-            <div class="flying-capsule" id="flyingCapsule">
-                <span id="flyingEmoji">🍜</span>
+                    <!-- 飞行扭蛋（相对图片定位，从机器中飞出） -->
+                    <div class="flying-capsule" id="flyingCapsule">
+                        <span id="flyingEmoji">🍜</span>
+                    </div>
+                </div>
+
+                <!-- 抽奖触发按钮（纯文字，嵌入扭蛋机底座） -->
+                <div class="handle-area">
+                    <button class="spin-btn" id="handle" type="button">扭出今日美食</button>
+                </div>
             </div>
 
             <!-- 结果区：美食卡片 -> 闪购入口 -> 吉祥语 -->
