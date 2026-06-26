@@ -40,13 +40,24 @@ function getWeightedRandomFood() {
     const random = Math.random();
 
     if (random < CONFIG.CANTEEN_PROBABILITY) {
-        // 抽中食堂美食
+        // 抽中食堂美食（3楼 + 4楼 + P2层共 80%）
         const canteenFoods = foods.filter(f => f.floor > 0);
         return canteenFoods[Math.floor(Math.random() * canteenFoods.length)];
     } else {
-        // 抽中其他美食
+        // 抽中其他美食（20%）：今日不重复推荐
         const otherFoods = foods.filter(f => f.floor === 0);
-        return otherFoods[Math.floor(Math.random() * otherFoods.length)];
+        const todayOther = getTodayOtherFoods();
+        let remaining = otherFoods.filter(f => !todayOther.includes(f.name));
+
+        // 今日全部其他美食都抽过了：清空记忆从头推荐（不重复）
+        if (remaining.length === 0) {
+            clearTodayOtherFoods();
+            remaining = otherFoods;
+        }
+
+        const chosen = remaining[Math.floor(Math.random() * remaining.length)];
+        addTodayOtherFood(chosen.name);
+        return chosen;
     }
 }
 

@@ -9,7 +9,7 @@ const foods = [
     { emoji: "🍜", name: "4楼面条", floor: 4 },
     { emoji: "🌶️", name: "4楼江西小炒", floor: 4 },
     { emoji: "🔥", name: "4楼川菜档口", floor: 4 },
-    // 3楼餐厅 (13个)
+    // 3楼餐厅 (12个)
     { emoji: "🍜", name: "3楼山西面馆", floor: 3 },
     { emoji: "🍲", name: "3楼湖南米粉", floor: 3 },
     { emoji: "🥘", name: "3楼冒菜", floor: 3 },
@@ -17,13 +17,21 @@ const foods = [
     { emoji: "🥟", name: "3楼粥/包子/锅贴", floor: 3 },
     { emoji: "🔥", name: "3楼麻辣香锅", floor: 3 },
     { emoji: "🍲", name: "3楼猪肚鸡", floor: 3 },
-    { emoji: "🍜", name: "3楼五谷渔粉", floor: 3 },
     { emoji: "🍱", name: "3楼自选档口", floor: 3 },
     { emoji: "🍛", name: "3楼咖喱鸡排饭", floor: 3 },
     { emoji: "🍗", name: "3楼烧腊", floor: 3 },
     { emoji: "🥘", name: "3楼小碗菜", floor: 3 },
-    { emoji: "🍜", name: "3楼黄牛肉米线", floor: 3 },
-    // 其他美食 (8个) - 30%概率
+    { emoji: "🍜", name: "3楼鲜切黄牛肉米线", floor: 3 },
+    // 7号楼P2层档口 (8个) - 享受食堂 80% 概率
+    { emoji: "🦆", name: "p2层北京烤鸭", floor: 2 },
+    { emoji: "🥬", name: "p2层东北菜档口", floor: 2 },
+    { emoji: "🍜", name: "p2层煮泡面档口", floor: 2 },
+    { emoji: "🍲", name: "p2层韩国石锅档口", floor: 2 },
+    { emoji: "🍗", name: "p2层海南鸡饭", floor: 2 },
+    { emoji: "🍜", name: "p2层炸酱面/汤面档口", floor: 2 },
+    { emoji: "🍚", name: "p2层丼饭/味增汤", floor: 2 },
+    { emoji: "🥟", name: "p2层嵊州小吃", floor: 2 },
+    // 其他美食 (14个) - 20%概率，今日不重复推荐
     { emoji: "🍣", name: "精致寿司", floor: 0 },
     { emoji: "🍔", name: "双层汉堡", floor: 0 },
     { emoji: "🍕", name: "意式披萨", floor: 0 },
@@ -31,7 +39,13 @@ const foods = [
     { emoji: "🍝", name: "奶油意面", floor: 0 },
     { emoji: "🥘", name: "韩式烤肉", floor: 0 },
     { emoji: "🥩", name: "澳洲牛排", floor: 0 },
-    { emoji: "🦐", name: "油焖大虾", floor: 0 }
+    { emoji: "🦐", name: "油焖大虾", floor: 0 },
+    { emoji: "🍛", name: "印度咖喱饭", floor: 0 },
+    { emoji: "🍱", name: "日式定食", floor: 0 },
+    { emoji: "🍜", name: "越南河粉", floor: 0 },
+    { emoji: "🦀", name: "清蒸螃蟹", floor: 0 },
+    { emoji: "🥪", name: "美式三明治", floor: 0 },
+    { emoji: "🍲", name: "泰式冬阴功", floor: 0 }
 ];
 
 // 吉祥语配置

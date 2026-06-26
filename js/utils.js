@@ -79,6 +79,29 @@ function hasFeedbackToday(foodName) {
     return data.hasOwnProperty(foodName);
 }
 
+// 获取今日已抽过的"其他美食"名单（floor:0，用于今日不重复推荐）
+function getTodayOtherFoods() {
+    const key = 'gacha_other_foods_' + getTodayStr();
+    const data = localStorage.getItem(key);
+    return data ? JSON.parse(data) : [];
+}
+
+// 记录今日已抽过的"其他美食"
+function addTodayOtherFood(foodName) {
+    const list = getTodayOtherFoods();
+    if (!list.includes(foodName)) {
+        list.push(foodName);
+        const key = 'gacha_other_foods_' + getTodayStr();
+        localStorage.setItem(key, JSON.stringify(list));
+    }
+}
+
+// 清空今日"其他美食"记录（清单抽完后重置从头推荐）
+function clearTodayOtherFoods() {
+    const key = 'gacha_other_foods_' + getTodayStr();
+    localStorage.removeItem(key);
+}
+
 // 获取今日抽奖次数
 function getTodaySpinCount() {
     const key = 'gacha_spin_count_' + getTodayStr();
@@ -176,6 +199,9 @@ if (typeof module !== 'undefined' && module.exports) {
         getTodayFeedback,
         saveTodayFeedback,
         hasFeedbackToday,
+        getTodayOtherFoods,
+        addTodayOtherFood,
+        clearTodayOtherFoods,
         getTodaySpinCount,
         incrementTodaySpinCount,
         showToast,
