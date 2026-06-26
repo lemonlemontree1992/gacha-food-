@@ -40,9 +40,20 @@ function getWeightedRandomFood() {
     const random = Math.random();
 
     if (random < CONFIG.CANTEEN_PROBABILITY) {
-        // 抽中食堂美食（3楼 + 4楼 + P2层共 80%）
+        // 抽中食堂美食（3楼 + 4楼 + P2层共 80%），最近 7 次内不重复
         const canteenFoods = foods.filter(f => f.floor > 0);
-        return canteenFoods[Math.floor(Math.random() * canteenFoods.length)];
+        const recent = getRecentCanteenFoods();
+        let candidates = canteenFoods.filter(f => !recent.includes(f.name));
+
+        // 候选不够（最近 7 次已覆盖大部分食堂档）：清空队列重置后再选
+        if (candidates.length === 0) {
+            clearRecentCanteenFoods();
+            candidates = canteenFoods;
+        }
+
+        const chosen = candidates[Math.floor(Math.random() * candidates.length)];
+        addRecentCanteenFood(chosen.name);
+        return chosen;
     } else {
         // 抽中其他美食（20%）：今日不重复推荐
         const otherFoods = foods.filter(f => f.floor === 0);

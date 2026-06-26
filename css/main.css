@@ -516,7 +516,10 @@ body {
 }
 
 /* 管理入口 */
+/* 管理入口隐藏：admin-link 仅作为后台密码入口的触发器保留，
+   视觉上隐藏。后台 admin.html 和密码弹窗逻辑保留，需要恢复展示时改为 display: block 即可 */
 .admin-link {
+    display: none;
     position: fixed;
     bottom: 10px;
     right: 15px;

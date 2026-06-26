@@ -102,6 +102,32 @@ function clearTodayOtherFoods() {
     localStorage.removeItem(key);
 }
 
+// 食堂档最近 N 次记录（滑动窗口，避免最近一次抽签内出现重复）
+const RECENT_CANTEEN_WINDOW = 7;
+const RECENT_CANTEEN_KEY = 'gacha_recent_canteen';
+
+// 获取最近一次抽签的食堂档名单（最多 RECENT_CANTEEN_WINDOW 个）
+function getRecentCanteenFoods() {
+    const data = localStorage.getItem(RECENT_CANTEEN_KEY);
+    return data ? JSON.parse(data) : [];
+}
+
+// 记录刚抽中的食堂档，超出窗口时丢弃最旧的（滑动窗口）
+function addRecentCanteenFood(foodName) {
+    const list = getRecentCanteenFoods();
+    list.push(foodName);
+    // 仅保留最近 N 个，弹出多余的旧记录
+    while (list.length > RECENT_CANTEEN_WINDOW) {
+        list.shift();
+    }
+    localStorage.setItem(RECENT_CANTEEN_KEY, JSON.stringify(list));
+}
+
+// 清空最近食堂档记录（候选抽完不够时重置）
+function clearRecentCanteenFoods() {
+    localStorage.removeItem(RECENT_CANTEEN_KEY);
+}
+
 // 获取今日抽奖次数
 function getTodaySpinCount() {
     const key = 'gacha_spin_count_' + getTodayStr();
@@ -202,6 +228,10 @@ if (typeof module !== 'undefined' && module.exports) {
         getTodayOtherFoods,
         addTodayOtherFood,
         clearTodayOtherFoods,
+        getRecentCanteenFoods,
+        addRecentCanteenFood,
+        clearRecentCanteenFoods,
+        RECENT_CANTEEN_WINDOW,
         getTodaySpinCount,
         incrementTodaySpinCount,
         showToast,
